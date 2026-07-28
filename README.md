@@ -18,10 +18,12 @@
 
 ## ⚙️ 系統需求
 
-| 項目 | 最低版本 |
-|------|---------|
+| 項目 | 最低版本 / 說明 |
+|------|----------------|
 | Python | 3.10+ |
+| Node.js | 18+（安裝 `agy` CLI 必要）|
 | 作業系統 | Windows 10 / macOS 12 / Ubuntu 20.04+ |
+| **帳號（擇一）** | Antigravity 帳號 **或** Google Gemini Pro 帳號皆可使用 `agy`|
 
 ---
 
@@ -46,13 +48,75 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 3. 安裝依賴套件
+### 3. 安裝 Python 依賴套件
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. 設定 API 金鑰
+### 4. 安裝並登入 Antigravity CLI（`agy`）
+
+本專案整合 **Antigravity CLI（`agy`）** 作為 AI 輔助開發工具，啟動 `run_agy.bat` 需要先完成帳號設定。
+
+#### 4-1. 準備帳號（擇一即可）
+
+`agy` 支援兩種帳號登入，**有 Google 帳號並訂閱 Gemini Pro 即可直接使用**，無需等待邀請：
+
+| 方式 | 說明 | 取得方式 |
+|------|------|----------|
+| **Google Gemini Pro**（推薦）| 有 Google 帳號 + 訂閱 Gemini Pro 即可 | [gemini.google.com](https://gemini.google.com) 訂閱 Advanced 方案 |
+| **Antigravity 帳號** | 邀請制，申請後等待審核 | [antigravity.dev](https://antigravity.dev) 申請 |
+
+#### 4-2. 安裝 Node.js
+
+前往 [https://nodejs.org](https://nodejs.org) 下載並安裝 **Node.js 18+**（LTS 版本）。
+
+確認安裝成功：
+```bash
+node --version   # 應顯示 v18.x.x 以上
+npm --version
+```
+
+#### 4-3. 安裝 agy CLI
+
+```bash
+npm install -g @antigravity/cli
+```
+
+確認安裝：
+```bash
+agy --version
+```
+
+#### 4-4. 登入帳號
+
+```bash
+agy login
+```
+
+執行後會自動開啟瀏覽器，選擇登入方式：
+- **以 Google 帳號登入**（需有 Gemini Pro 訂閱）
+- **以 Antigravity 帳號登入**
+
+完成授權後回到終端機即登入成功。
+
+#### 4-5. 在專案目錄中啟動 agy
+
+**方式 A：雙擊執行批次檔（Windows）**
+```
+雙擊 run_agy.bat
+```
+
+**方式 B：手動啟動**
+```bash
+agy --dangerously-skip-permissions
+```
+
+> `agy` 會自動讀取專案內的 `.antigravity/rules.md`、`.antigravitycli/instruction.md`、`.agents/rules` 作為上下文，了解本專案的架構與開發規範。
+
+---
+
+### 5. 設定 API 金鑰
 
 開啟 `config.py`，填入你的 Telegram Bot Token 與 Chat ID：
 
@@ -68,7 +132,7 @@ CHAT_ID   = 你的 Chat ID（數字）
 
 如果需要自動交易功能，請於啟動後前往 Web 儀表板（`http://localhost:5000`）的「設定」頁面，填入交易所 API Key。
 
-### 5. 啟動系統
+### 6. 啟動交易系統
 
 ```bash
 python scanner.py
@@ -90,7 +154,15 @@ crypto-trading-system-pure/
 ├── config.py                # 全域設定（Token、幣種清單、掃描參數等）
 ├── db_manager.py            # SQLite 資料庫操作、交易所 API 呼叫
 ├── run_realtime.py          # 即時運行包裝器
+├── run_agy.bat              # 一鍵啟動 Antigravity CLI（Windows）
 ├── requirements.txt         # Python 依賴套件清單
+│
+├── .antigravity/
+│   └── rules.md             # agy 專案規範（架構守則）
+├── .antigravitycli/
+│   └── instruction.md       # agy CLI 開發指引
+├── .agents/
+│   └── rules                # AI Agent 開發規則
 │
 ├── analyzers/               # 技術分析模組
 │   ├── __init__.py
@@ -179,6 +251,12 @@ crypto-trading-system-pure/
 
 **Q：自動交易功能如何啟用？**
 > A：前往儀表板「設定」頁面，填入 API Key 並開啟「自動交易」開關。建議先在模擬模式（Mock Mode）下測試。
+
+**Q：`agy` 指令找不到（command not found）**
+> A：請確認已安裝 Node.js 18+ 並執行 `npm install -g @antigravity/cli`。Windows 請重新開啟終端機讓 PATH 生效。
+
+**Q：`agy login` 後無法使用（提示未授權）**
+> A：建議改用 **Google Gemini Pro 帳號**登入（需訂閱 Gemini Advanced）。若使用 Antigravity 帳號，請確認已通過邀請審核（[antigravity.dev](https://antigravity.dev)）。
 
 ---
 
