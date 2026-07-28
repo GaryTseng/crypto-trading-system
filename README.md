@@ -32,8 +32,8 @@
 ### 1. 下載專案
 
 ```bash
-git clone https://github.com/your-username/crypto-trading-system-pure.git
-cd crypto-trading-system-pure
+git clone https://github.com/GaryTseng/crypto-trading-system.git
+cd crypto-trading-system
 ```
 
 ### 2. 建立虛擬環境（強烈建議）
@@ -149,7 +149,7 @@ http://localhost:5000
 ## 📁 專案結構
 
 ```
-crypto-trading-system-pure/
+crypto-trading-system/
 ├── scanner.py               # 主程式入口（掃描器 + Web 伺服器啟動）
 ├── config.py                # 全域設定（Token、幣種清單、掃描參數等）
 ├── db_manager.py            # SQLite 資料庫操作、交易所 API 呼叫
