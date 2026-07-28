@@ -1,0 +1,11 @@
+{
+  "sentiment": "BULLISH",
+  "reason": "市場極度恐懼(29)，ETH資金費率顯著負值，納指半導體重挫引發拋售，空頭極度擁擠易引發空頭擠壓/V反。",
+  "last_updated": "2026-07-28 10:23:05",
+  "auto_enabled": "true",
+  "margin": "50",
+  "leverage": "20",
+  "max_concurrent": "3",
+  "high_confidence": "true",
+  "tg_notify_enabled": "false"
+}

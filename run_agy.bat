@@ -1,0 +1,1 @@
+start cmd /k "agy --dangerously-skip-permissions"
