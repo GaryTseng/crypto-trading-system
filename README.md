@@ -32,7 +32,7 @@
 ### 1. 下載專案
 
 ```bash
-[git clone https://github.com/your-username/crypto-trading-system-pure.git](https://github.com/GaryTseng/crypto-trading-system.git)
+git clone https://github.com/your-username/crypto-trading-system-pure.git
 cd crypto-trading-system-pure
 ```
 
